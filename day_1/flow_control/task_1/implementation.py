@@ -10,4 +10,3 @@ def get_numbers():
 
     return list_of_number
 
-    raise NotImplementedError

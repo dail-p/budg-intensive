@@ -14,4 +14,3 @@ def convert_temperature(value, to_scale):
     else:
         return value
 
-    raise NotImplementedError
