@@ -6,30 +6,33 @@ def get_days_count_by_month(month):
 
     Returns: количество дней
     """
+    days = 0
     if month == 'январь':
-        return 31
+        days = 31
     elif month == 'февраль':
-        return 28
+        days = 28
     elif month == 'март':
-        return 31
+        days = 31
     elif month == 'апрель':
-        return 30
+        days = 30
     elif month == 'май':
-        return 31
+        days = 31
     elif month == 'июнь':
-        return 30
+        days = 30
     elif month == 'июль':
-        return 31
+        days = 31
     elif month == 'август':
-        return 31
+        days = 31
     elif month == 'сентябрь':
-        return 30
+        days = 30
     elif month == 'октябрь':
-        return 31
+        days = 31
     elif month == 'ноябрь':
-        return 30
+        days = 30
     elif month == 'декабрь':
-        return 31
+        days = 31
     else:
-        return 0
+        days = 0
+
+    return days
 
