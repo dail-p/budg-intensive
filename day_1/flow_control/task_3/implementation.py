@@ -6,4 +6,20 @@ def get_days_count_by_month(month):
 
     Returns: количество дней
     """
-    raise NotImplementedError
+    days_count_by_month = {
+        'январь': 31,
+        'февраль': 28,
+        'март': 31,
+        'апрель': 30,
+        'май': 31,
+        'июнь': 30,
+        'июль': 31,
+        'август': 31,
+        'сентябрь': 30,
+        'октябрь': 31,
+        'ноябрь': 30,
+        'декабрь': 31,
+        'отдыхабрь': 0,
+    }
+
+    return days_count_by_month.get(month, 0)

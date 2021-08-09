@@ -12,3 +12,11 @@ def transmit_to_space(message):
 
 
 print(transmit_to_space("Test message"))
+
+
+
+"""
+Будет выведена строка "Test message", а поcле None. При выполнении функции data_transmitter интерпретатор не нашел в 
+локальной области видимости переменную message, но нашел ее на уровень выше в функции transmit_to_space. Также в функции 
+transmit_to_space не встречаются операторы return, поэтому она возвращает None.
+"""

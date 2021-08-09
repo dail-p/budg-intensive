@@ -1,3 +1,6 @@
+import datetime as dt
+
+
 def get_next_date(some_date):
     """Возвращает следующую дату для заданной
 
@@ -6,4 +9,7 @@ def get_next_date(some_date):
 
     Returns: следующая дата
     """
-    raise NotImplementedError
+    if isinstance(some_date, dt.date):
+        return some_date + dt.timedelta(days=1)
+    else:
+        raise NotImplementedError
