@@ -10,6 +10,7 @@ def counter(function):
     def wrapper():
         nonlocal count
         count += 1
+        function()
 
         return count
 

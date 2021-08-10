@@ -7,9 +7,10 @@ class ClassFather:
     def __init__(self):
         pass
 
-    def register(self):
-        if type(self) != ClassFather:
-            self.registered_list.add(type(self))
+    @classmethod
+    def register(cls):
+        if cls != ClassFather:
+            cls.registered_list.add(cls)
         else:
             raise MyException
 

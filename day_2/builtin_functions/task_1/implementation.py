@@ -17,5 +17,5 @@ class Value:
     def __truediv__(self, other):
         try:
             return self.value / other
-        except Exception:
+        except:
             raise MyException

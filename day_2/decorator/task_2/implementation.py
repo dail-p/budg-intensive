@@ -9,7 +9,7 @@ def check_value(function):
     """
 
     def wrapper(number):
-        if type(number) == int:
+        if isinstance(number, int):
             if number >= 0:
                 return function(number)
             else:
@@ -22,19 +22,14 @@ def check_value(function):
 
 def cache_value(function):
     """
-    Обертка, которая кэширует результат последних пяти вызовов.
+    Обертка, которая кэширует результат предыдущих вызовов.
     """
     dict_of_called = {}
 
     def wrapper(number):
         keys = dict_of_called.keys()
 
-        if number in keys:
-            pass
-        elif len(dict_of_called) <= 5:
-            dict_of_called[number] = function(number)
-        else:
-            dict_of_called.pop(keys[0])
+        if number not in keys:
             dict_of_called[number] = function(number)
 
         return dict_of_called[number]

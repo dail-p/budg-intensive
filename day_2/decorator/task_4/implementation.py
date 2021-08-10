@@ -15,10 +15,10 @@ def decorator_maker(times, delay):
     """
     def call_decorator(function):
         def wrapper():
-            for iter in range(times):
+            for _ in range(times):
                 try:
                     base_result = function()
-                except Exception:
+                except:
                     time.sleep(delay)
                     continue
                 else:
