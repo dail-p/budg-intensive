@@ -11,7 +11,7 @@ class Tuple:
         return self._tuple[key]
 
     def __str__(self):
-        return str(self._tuple)
+        return '(' + ", ".join(str(e) for e in self._tuple) + ')'
 
     def count(self, value):
         """
@@ -35,9 +35,9 @@ class Tuple:
         for count, item in enumerate(self._tuple):
             if item == value:
                 return count
+        else:
+            raise ValueError
 
-        raise ValueError
 
-
-a = Tuple(1,2,3)
+a = Tuple(1, 2, 3)
 print(a)
