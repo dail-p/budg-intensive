@@ -27,11 +27,12 @@ def cache_value(function):
     dict_of_called = {}
 
     def wrapper(number):
-        keys = dict_of_called.keys()
-
-        if number not in keys:
+        if number not in dict_of_called:
             dict_of_called[number] = function(number)
 
         return dict_of_called[number]
 
     return wrapper
+
+
+
