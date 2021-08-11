@@ -8,3 +8,17 @@ first_tuple = (1, 2)
 second_tuple = (1, 2, 3)
 first_list = [1, 2]
 second_list = [1, 2, 3]
+
+print(first_tuple.__sizeof__())
+print(second_tuple.__sizeof__())
+print(first_list.__sizeof__())
+print(second_list.__sizeof__())
+
+first_list.append(3)
+print(first_list.__sizeof__())
+
+"""
+Изначался список с двумя элементами занимает 40 + 8*2 байта. Метод 
+аppend при выполнении выделяет память до 8 мест (список при этом из 3 элементов остается), 
+поэтому после добавления элемента он занимеет 40 + 8*8 байта.
+"""
