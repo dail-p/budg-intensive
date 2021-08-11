@@ -3,14 +3,15 @@ class Tuple:
     Создает неизменяемый объект, с упорядоченной структурой, методами count и index.
     При создание принимается последовательность объектов
     """
+
     def __init__(self, *args):
-        if args is not None:
-            self._tuple = [x for x in args]
-        else:
-            self._tuple = []
+        self._tuple = [x for x in args]
 
     def __getitem__(self, key):
         return self._tuple[key]
+
+    def __str__(self):
+        return str(self._tuple)
 
     def count(self, value):
         """
@@ -19,8 +20,8 @@ class Tuple:
             value: Элемент число вхождения которого ищется в объекте
         """
         count = 0
-        for it in self._tuple:
-            if it == value:
+        for item in self._tuple:
+            if item == value:
                 count += 1
 
         return count
@@ -31,14 +32,12 @@ class Tuple:
         Args:
             value: Элемент индекс которого ищется в объекте
         """
-        index = 0
-        if value in self._tuple:
-            for it in self._tuple:
-                if it == value:
-                    break
-                index += 1
+        for count, item in enumerate(self._tuple):
+            if item == value:
+                return count
 
-            return index
+        raise ValueError
 
-        else:
-            raise ValueError
+
+a = Tuple(1,2,3)
+print(a)
