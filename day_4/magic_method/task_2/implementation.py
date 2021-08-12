@@ -14,7 +14,7 @@ class MathClock:
                 self.hours = 24 - abs(self.hours - abs(self.minutes - other) // 60 - 1) % 24
             else:
                 self.hours = abs(self.hours - abs(self.minutes - other) // 60 - 1) % 24
-            self.minutes = 60 - (other - self.minutes)
+            self.minutes = 60 - (other - self.minutes) % 60
         else:
             self.minutes = self.minutes - other
 
@@ -45,4 +45,8 @@ class MathClock:
 
         return str_hours + ':' + str_minutes
 
+
+time = MathClock()
+print((time / 1).get_time())
+print((time - 61).get_time())
 
