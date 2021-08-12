@@ -45,8 +45,3 @@ class MathClock:
 
         return str_hours + ':' + str_minutes
 
-
-time = MathClock()
-print((time / 1).get_time())
-print((time - 61).get_time())
-
