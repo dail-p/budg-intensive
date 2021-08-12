@@ -10,11 +10,11 @@ class MathClock:
 
     def __sub__(self, other):
         if self.minutes - other < 0:
-            if self.hours - abs(self.minutes - other) // 60 - 1 < 0:
-                self.hours = 24 - abs(self.hours - abs(self.minutes - other) // 60 - 1) % 24
+            if self.hours - max(abs(self.minutes - other) // 60, 1) < 0:
+                self.hours = (24 - abs(self.hours - max(abs(self.minutes - other) // 60, 1))) % 24
             else:
-                self.hours = abs(self.hours - abs(self.minutes - other) // 60 - 1) % 24
-            self.minutes = 60 - (other - self.minutes) % 60
+                self.hours = abs(self.hours - max(abs(self.minutes - other) // 60, 1)) % 24
+            self.minutes = (60 - (other - self.minutes)) % 60
         else:
             self.minutes = self.minutes - other
 
@@ -26,7 +26,7 @@ class MathClock:
 
     def __truediv__(self, other):
         if self.hours - other < 0:
-            self.hours = 24 - abs(self.hours - other) % 24
+            self.hours = (24 - abs(self.hours - other)) % 24
         else:
             self.hours = abs(self.hours - other) % 24
 
@@ -44,4 +44,5 @@ class MathClock:
             str_minutes = str(self.minutes)
 
         return str_hours + ':' + str_minutes
+
 
