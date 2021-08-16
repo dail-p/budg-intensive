@@ -19,10 +19,15 @@ class WorkerManager(models.Manager):
         Строки упорядочены по фамилии и имени сотрудника.
         Каждая строка должна быть в формате вида: Васильев Василий, 888, Подразделение №1
         """
-        queryset = super().get_queryset()
+        queryset = super().get_queryset().values_list(
+            'first_name',
+            'last_name',
+            'tab_num',
+            'department__name'
+        )
         result_list = []
         for item in queryset:
-            result_list.append(f"{item.first_name} {item.last_name}, {item.tab_num}, {item.department.name}")
+            result_list.append(f"{item[0]} {item[1]}, {item[2]}, {item[3]}")
 
         return result_list
 
