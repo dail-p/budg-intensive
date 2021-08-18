@@ -23,7 +23,7 @@ class Office(models.Model):
         abstract = True
 
 
-class EducationOffice(models.Model):
+class EducationOffice(Office):
     """
     Учебный офис
     """
@@ -33,7 +33,7 @@ class EducationOffice(models.Model):
         db_table = 'education_office'
 
 
-class GeneralOffice(models.Model):
+class GeneralOffice(Office):
     """
     Головной офис
     """
