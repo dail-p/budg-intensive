@@ -9,16 +9,33 @@ class WorkerManager(models.Manager):
         """
         Переопределенный кверисет возвращающий всех сотрудников без директоров
         """
+        queryset = super().get_queryset()
+        id_list = []
+        for q in queryset:
+            try:
+                q.director
+            except:
+                id_list.append(q.id)
 
-        raise NotImplementedError
+        result_queryset = queryset.filter(id__in=id_list)
+        return result_queryset
+
+
+class Office(models.Model):
+    """
+    Офисы
+    """
+    address = models.TextField('Адрес')
+    mail = models.CharField('Адрес почты', max_length=30, )
+
+    class Meta:
+        abstract = True
 
 
 class EducationOffice(models.Model):
     """
     Учебный офис
     """
-    address = models.TextField('Адрес')
-    mail = models.CharField('Адрес почты', max_length=30,)
     is_active = models.BooleanField(default=True)
 
     class Meta:
@@ -29,8 +46,6 @@ class GeneralOffice(models.Model):
     """
     Головной офис
     """
-    address = models.TextField('Адрес')
-    mail = models.CharField('Адрес почты', max_length=30)
     name = models.TextField('Название головного офиса ')
 
     class Meta:
@@ -88,7 +103,11 @@ class OrderedWorker(Worker):
         """
         Получить значение года приема на работу
         """
-        raise NotImplementedError
+        return self.startwork_date.year
+
+    class Meta:
+        ordering = ['first_name', 'startwork_date']
+        proxy = True
 
 
 class Director(Worker):
@@ -96,6 +115,9 @@ class Director(Worker):
     Директор
     """
     # что здесь не хватает?
+    objects = WorkerManager()
+    objects_all = models.Manager()
+
     grade = models.IntegerField('Оценка', default=1)
 
     class Meta:
