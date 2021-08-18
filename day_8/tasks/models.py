@@ -9,16 +9,7 @@ class WorkerManager(models.Manager):
         """
         Переопределенный кверисет возвращающий всех сотрудников без директоров
         """
-        queryset = super().get_queryset()
-        id_list = []
-        for q in queryset:
-            try:
-                q.director
-            except:
-                id_list.append(q.id)
-
-        result_queryset = queryset.filter(id__in=id_list)
-        return result_queryset
+        return super().get_queryset().filter(director__isnull=True)
 
 
 class Office(models.Model):
@@ -115,8 +106,7 @@ class Director(Worker):
     Директор
     """
     # что здесь не хватает?
-    objects = WorkerManager()
-    objects_all = models.Manager()
+    objects = models.Manager()
 
     grade = models.IntegerField('Оценка', default=1)
 
