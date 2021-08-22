@@ -1,5 +1,6 @@
 from django.utils.deprecation import MiddlewareMixin
 
+import time
 
 class FakeUser:
 
@@ -12,9 +13,19 @@ class FakeUser:
 class MyMiddleware(MiddlewareMixin):
 
     def process_request(self, request):
+        self.begin = time.time()
+        time.sleep(1)
+        user = FakeUser()
+        if request.auth == 'VALID_TOKEN':
+            user.auth = True
+            request.auth = True
+        else:
+            user.auth = False
+            request.auth = False
 
         return self.get_response(request)
 
     def process_response(self, request, response):
-
+        runtime = time.time() - self.begin
+        request.runtime = runtime
         return response
